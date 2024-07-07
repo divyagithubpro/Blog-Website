@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-image: url('/static/images/web.avif'); /* Update this to the path of your image */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-shadow: 0 0 10px rgba(0,0,0,0.7);
+        }
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .button {
+            padding: 15px 30px;
+            margin: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        @media (max-width: 768px) {
+            .button {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if user.is_authenticated %}
+            <button class="button" onclick="window.location.href='{% url 'logout' %}'"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            <button class="button" onclick="window.location.href='{% url 'publish-blog' %}'"><i class="fas fa-pencil-alt"></i> Publish Blog</button>
+            <button class="button" onclick="window.location.href='{% url 'read-blogs' %}'"><i class="fas fa-book-reader"></i> Read Blogs</button>
+        {% else %}
+            <button class="button" onclick="window.location.href='{% url 'login' %}'"><i class="fas fa-sign-in-alt"></i> Login</button>
+            <button class="button" onclick="window.location.href='{% url 'register' %}'"><i class="fas fa-user-plus"></i> Register</button>
+            <button class="button" onclick="window.location.href='{% url 'login' %}?next={% url 'publish-blog' %}'"><i class="fas fa-pencil-alt"></i> Publish Blog</button>
+            <button class="button" onclick="window.location.href='{% url 'login' %}?next={% url 'read-blogs' %}'"><i class="fas fa-book-reader"></i> Read Blogs</button>
+        {% endif %}
+    </div>
+</body>
+</html>

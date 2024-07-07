@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Read Blogs</title>
+    <style>
+        body {
+            background-image: url('/static/images/web.avif'); /* Update this to the path of your image */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-shadow: 0 0 10px rgba(0,0,0,0.7);
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 600px;
+            max-width: 90%;
+        }
+        .blog-post {
+            background: rgba(255, 255, 255, 0.9);
+            color: black;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .blog-post h3 {
+            margin-top: 0;
+        }
+        .blog-post p {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Read Blogs</h2>
+        {% for post in posts %}
+            <div class="blog-post">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.content }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
